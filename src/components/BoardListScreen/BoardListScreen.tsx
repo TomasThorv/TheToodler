@@ -1,8 +1,8 @@
 import React from 'react';
 import { ScrollView, Text, StyleSheet } from 'react-native';
-import { Board, NewBoardForm } from '../types';
-import BoardCard from './BoardCard';
-import BoardForm from './BoardForm';
+import { Board, NewBoardForm } from '../../types';
+import BoardCard from '../BoardCard';
+import BoardForm from '../BoardForm';
 
 interface BoardListScreenProps {
     boards: Board[];
@@ -46,11 +46,13 @@ const styles = StyleSheet.create({
         padding: 24,
     },
     title: {
-        fontSize: 34,
+        fontSize: 32,
         fontWeight: '700',
-        marginBottom: 20,
-        color: '#1d1d1f',
-        letterSpacing: -0.5,
+        marginBottom: 24,
+        color: '#ff6b35',
+        letterSpacing: 2,
+        fontFamily: 'monospace',
+        textTransform: 'uppercase',
     },
 });
 

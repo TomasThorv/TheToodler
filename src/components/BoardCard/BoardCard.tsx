@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { Board } from '../types';
-import AppleButton from './AppleButton';
+import { Board } from '../../types';
+import AppleButton from '../AppleButton';
 
 interface BoardCardProps {
     board: Board;
@@ -35,15 +35,17 @@ const BoardCard: React.FC<BoardCardProps> = ({ board, onOpen, onDelete }) => {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: '#ffffff',
-        borderRadius: 20,
+        backgroundColor: '#1a1d2e',
+        borderRadius: 8,
         overflow: 'hidden',
         marginBottom: 20,
-        shadowColor: '#000',
-        shadowOpacity: 0.08,
-        shadowRadius: 20,
+        borderWidth: 1,
+        borderColor: '#2d3142',
+        shadowColor: '#ff6b35',
+        shadowOpacity: 0.2,
+        shadowRadius: 12,
         shadowOffset: { width: 0, height: 4 },
-        elevation: 5,
+        elevation: 4,
     },
     thumbnail: {
         height: 200,
@@ -54,17 +56,20 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     cardTitle: {
-        fontSize: 22,
-        fontWeight: '600',
+        fontSize: 20,
+        fontWeight: '700',
         marginBottom: 6,
-        color: '#1d1d1f',
-        letterSpacing: -0.4,
+        color: '#ff6b35',
+        letterSpacing: 1,
+        fontFamily: 'monospace',
+        textTransform: 'uppercase',
     },
     cardDescription: {
-        fontSize: 15,
-        color: '#6e6e73',
+        fontSize: 14,
+        color: '#b0b0b0',
         marginBottom: 16,
-        lineHeight: 21,
+        lineHeight: 22,
+        fontFamily: 'monospace',
     },
     cardActions: {
         flexDirection: 'row',

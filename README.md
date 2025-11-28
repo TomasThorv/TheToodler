@@ -10,15 +10,42 @@ TheToodler/
 ├── data.json                    # Initial data
 ├── src/
 │   ├── components/              # React components (Single Responsibility)
-│   │   ├── AppleButton.tsx      # Reusable button component
-│   │   ├── BoardCard.tsx        # Board display card
-│   │   ├── BoardForm.tsx        # Board creation form
-│   │   ├── BoardListScreen.tsx  # Board list view screen
-│   │   ├── BoardDetailScreen.tsx # Board detail view screen
-│   │   ├── ListCard.tsx         # List display card
-│   │   ├── ListForm.tsx         # List creation form
-│   │   ├── TaskCard.tsx         # Task display card
-│   │   └── TaskForm.tsx         # Task creation form
+│   │   ├── AppleButton/
+│   │   │   ├── AppleButton.tsx
+│   │   │   ├── AppleButton.test.tsx
+│   │   │   └── index.ts
+│   │   ├── BoardCard/
+│   │   │   ├── BoardCard.tsx
+│   │   │   ├── BoardCard.test.tsx
+│   │   │   └── index.ts
+│   │   ├── BoardForm/
+│   │   │   ├── BoardForm.tsx
+│   │   │   ├── BoardForm.test.tsx
+│   │   │   └── index.ts
+│   │   ├── BoardListScreen/
+│   │   │   ├── BoardListScreen.tsx
+│   │   │   ├── BoardListScreen.test.tsx
+│   │   │   └── index.ts
+│   │   ├── BoardDetailScreen/
+│   │   │   ├── BoardDetailScreen.tsx
+│   │   │   ├── BoardDetailScreen.test.tsx
+│   │   │   └── index.ts
+│   │   ├── ListCard/
+│   │   │   ├── ListCard.tsx
+│   │   │   ├── ListCard.test.tsx
+│   │   │   └── index.ts
+│   │   ├── ListForm/
+│   │   │   ├── ListForm.tsx
+│   │   │   ├── ListForm.test.tsx
+│   │   │   └── index.ts
+│   │   ├── TaskCard/
+│   │   │   ├── TaskCard.tsx
+│   │   │   ├── TaskCard.test.tsx
+│   │   │   └── index.ts
+│   │   └── TaskForm/
+│   │       ├── TaskForm.tsx
+│   │       ├── TaskForm.test.tsx
+│   │       └── index.ts
 │   ├── hooks/                   # Custom React hooks
 │   │   └── useAppState.ts       # App state management hook
 │   ├── types/                   # TypeScript type definitions
@@ -93,6 +120,19 @@ npm run android
 npm run ios
 ```
 
+## Testing
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm test -- --watch
+
+# Run tests with coverage
+npm test -- --coverage
+```
+
 ## Lint & Format
 
 ```bash
@@ -102,3 +142,26 @@ npx eslint . --ext .ts,.tsx
 # Fix ESLint issues
 npx eslint . --ext .ts,.tsx --fix
 ```
+
+## Folder Structure Compliance
+
+✅ **Each component has its own folder** containing:
+
+- Component file (`ComponentName.tsx`)
+- Test file (`ComponentName.test.tsx`)
+- Index file for clean imports (`index.ts`)
+
+✅ **Proper separation of concerns**:
+
+- `src/components/` - All UI components
+- `src/hooks/` - Custom React hooks
+- `src/utils/` - Shared utility functions
+- `src/types/` - TypeScript type definitions
+- `src/styles/` - Shared styles (if needed)
+
+✅ **Code consistency enforced by ESLint**:
+
+- 4 spaces indentation
+- Egyptian style curly braces (1tbs)
+- Single quotes
+- Semicolons required

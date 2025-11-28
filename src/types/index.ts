@@ -17,7 +17,11 @@ export interface TaskItem {
     name: string;
     description: string;
     isFinished: boolean;
+    inProgress?: boolean;
     listId: number;
+    priority?: 'low' | 'medium' | 'high';
+    dueDate?: string;
+    createdAt?: string;
 }
 
 export interface NewBoardForm {
@@ -34,4 +38,6 @@ export interface NewListForm {
 export interface NewTaskForm {
     name: string;
     description: string;
+    priority?: 'low' | 'medium' | 'high';
+    dueDate?: string;
 }

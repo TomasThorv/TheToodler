@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-import { NewBoardForm } from '../types';
-import AppleButton from './AppleButton';
+import { NewBoardForm } from '../../types';
+import AppleButton from '../AppleButton';
 
 interface BoardFormProps {
     form: NewBoardForm;
@@ -38,31 +38,37 @@ const BoardForm: React.FC<BoardFormProps> = ({ form, onFormChange, onSubmit }) =
 
 const styles = StyleSheet.create({
     formContainer: {
-        backgroundColor: '#ffffff',
-        borderRadius: 18,
+        backgroundColor: '#1a1d2e',
+        borderRadius: 8,
         padding: 20,
         marginBottom: 20,
-        shadowColor: '#000',
-        shadowOpacity: 0.04,
+        borderWidth: 1,
+        borderColor: '#2d3142',
+        shadowColor: '#ff6b35',
+        shadowOpacity: 0.15,
         shadowRadius: 12,
         shadowOffset: { width: 0, height: 2 },
         elevation: 2,
     },
     sectionTitle: {
-        fontSize: 17,
-        fontWeight: '600',
+        fontSize: 16,
+        fontWeight: '700',
         marginBottom: 12,
-        color: '#1d1d1f',
-        letterSpacing: -0.3,
+        color: '#ff6b35',
+        letterSpacing: 1,
+        fontFamily: 'monospace',
+        textTransform: 'uppercase',
     },
     input: {
-        borderWidth: 0,
-        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: '#2d3142',
+        borderRadius: 6,
         padding: 14,
-        backgroundColor: '#f5f5f7',
-        fontSize: 16,
+        backgroundColor: '#0f1116',
+        fontSize: 14,
         marginBottom: 12,
-        color: '#1d1d1f',
+        color: '#ffffff',
+        fontFamily: 'monospace',
     },
 });
 

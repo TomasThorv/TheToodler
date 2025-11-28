@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { BoardList, TaskItem, NewTaskForm } from '../types';
-import TaskCard from './TaskCard';
-import TaskForm from './TaskForm';
+import { BoardList, TaskItem, NewTaskForm } from '../../types';
+import TaskCard from '../TaskCard';
+import TaskForm from '../TaskForm';
 
 interface ListCardProps {
     list: BoardList;
@@ -12,6 +12,7 @@ interface ListCardProps {
     onDeleteList: (listId: number) => void;
     onDeleteTask: (taskId: number) => void;
     onToggleTaskFinished: (taskId: number) => void;
+    onToggleTaskInProgress: (taskId: number) => void;
     onMoveTask: (taskId: number, listId: number) => void;
     onTaskFormChange: (form: NewTaskForm) => void;
     onAddTask: () => void;
@@ -25,13 +26,14 @@ const ListCard: React.FC<ListCardProps> = ({
     onDeleteList,
     onDeleteTask,
     onToggleTaskFinished,
+    onToggleTaskInProgress,
     onMoveTask,
     onTaskFormChange,
     onAddTask,
 }) => {
     return (
         <View style={styles.listCard}>
-            <View style={[styles.listHeader, { backgroundColor: list.color || '#eeeeee' }]}>
+            <View style={[styles.listHeader, { backgroundColor: list.color || '#ff6b35' }]}>
                 <Text style={styles.listTitle}>{list.name}</Text>
                 <TouchableOpacity onPress={() => onDeleteList(list.id)}>
                     <Text style={styles.deleteText}>Delete</Text>
@@ -45,6 +47,7 @@ const ListCard: React.FC<ListCardProps> = ({
                         availableLists={availableLists}
                         onDelete={onDeleteTask}
                         onToggleFinished={onToggleTaskFinished}
+                        onToggleInProgress={onToggleTaskInProgress}
                         onMoveToList={onMoveTask}
                     />
                 ))}
@@ -60,38 +63,45 @@ const ListCard: React.FC<ListCardProps> = ({
 
 const styles = StyleSheet.create({
     listCard: {
-        backgroundColor: '#ffffff',
-        borderRadius: 20,
+        backgroundColor: '#1a1d2e',
+        borderRadius: 8,
         marginBottom: 20,
         overflow: 'hidden',
-        shadowColor: '#000',
-        shadowOpacity: 0.06,
-        shadowRadius: 16,
-        shadowOffset: { width: 0, height: 3 },
-        elevation: 4,
+        borderWidth: 1,
+        borderColor: '#2d3142',
+        shadowColor: '#ff6b35',
+        shadowOpacity: 0.15,
+        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 2 },
+        elevation: 2,
     },
     listHeader: {
-        padding: 20,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
+        padding: 16,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: '#2d3142',
     },
     listTitle: {
-        fontSize: 20,
-        fontWeight: '600',
+        fontSize: 16,
+        fontWeight: '700',
         color: '#1d1d1f',
-        letterSpacing: -0.3,
+        letterSpacing: 1,
+        fontFamily: 'monospace',
+        textTransform: 'uppercase',
     },
     deleteText: {
-        color: '#ff3b30',
-        fontWeight: '600',
-        fontSize: 15,
+        color: '#1d1d1f',
+        fontWeight: '700',
+        fontSize: 14,
+        fontFamily: 'monospace',
+        letterSpacing: 0.5,
     },
     tasksContainer: {
         padding: 16,
         gap: 12,
+        backgroundColor: '#1a1d2e',
     },
 });
 

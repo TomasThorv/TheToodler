@@ -18,6 +18,13 @@ export const useAppState = (initialBoards: Board[], initialLists: BoardList[], i
     });
     const [taskForm, setTaskForm] = useState<Record<number, NewTaskForm>>({});
 
+    const getDefaultTaskForm = (): NewTaskForm => ({
+        name: '',
+        description: '',
+        priority: 'medium',
+        dueDate: '',
+    });
+
     const selectedBoard = useMemo(
         () => boards.find((board) => board.id === selectedBoardId) || null,
         [boards, selectedBoardId]
@@ -88,11 +95,14 @@ export const useAppState = (initialBoards: Board[], initialLists: BoardList[], i
             description: form.description.trim(),
             isFinished: false,
             listId,
+            priority: form.priority || 'medium',
+            dueDate: form.dueDate || undefined,
+            createdAt: new Date().toISOString(),
         };
         setTasks((prev) => [...prev, newTask]);
         setTaskForm((prev) => ({
             ...prev,
-            [listId]: { name: '', description: '' },
+            [listId]: getDefaultTaskForm(),
         }));
     };
 
@@ -109,6 +119,12 @@ export const useAppState = (initialBoards: Board[], initialLists: BoardList[], i
     const toggleTaskFinished = (taskId: number) => {
         setTasks((prev) =>
             prev.map((task) => (task.id === taskId ? { ...task, isFinished: !task.isFinished } : task))
+        );
+    };
+
+    const toggleTaskInProgress = (taskId: number) => {
+        setTasks((prev) =>
+            prev.map((task) => (task.id === taskId ? { ...task, inProgress: !task.inProgress } : task))
         );
     };
 
@@ -142,5 +158,6 @@ export const useAppState = (initialBoards: Board[], initialLists: BoardList[], i
         deleteTask,
         moveTaskToList,
         toggleTaskFinished,
+        toggleTaskInProgress,
     };
 };

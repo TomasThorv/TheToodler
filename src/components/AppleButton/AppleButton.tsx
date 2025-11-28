@@ -37,32 +37,39 @@ const AppleButton: React.FC<AppleButtonProps> = ({
 
 const styles = StyleSheet.create({
     button: {
-        paddingVertical: 12,
-        paddingHorizontal: 20,
-        borderRadius: 12,
+        paddingVertical: 14,
+        paddingHorizontal: 24,
+        borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
         minWidth: 100,
+        shadowColor: '#000',
+        shadowOpacity: 0.15,
+        shadowRadius: 8,
+        shadowOffset: { width: 0, height: 2 },
+        elevation: 3,
     },
     primary: {
-        backgroundColor: '#007aff',
+        backgroundColor: '#ff6b35',
     },
     secondary: {
-        backgroundColor: '#f5f5f7',
+        backgroundColor: '#2d3142',
     },
     danger: {
-        backgroundColor: '#ff3b30',
+        backgroundColor: '#ff3d00',
     },
     buttonText: {
-        fontSize: 16,
-        fontWeight: '600',
-        letterSpacing: -0.2,
+        fontSize: 14,
+        fontWeight: '700',
+        letterSpacing: 1,
+        fontFamily: 'monospace',
+        textTransform: 'uppercase',
     },
     primaryText: {
         color: '#ffffff',
     },
     secondaryText: {
-        color: '#007aff',
+        color: '#ff6b35',
     },
 });
 

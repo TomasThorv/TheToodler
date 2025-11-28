@@ -3,8 +3,8 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import initialData from './data.json';
 import { useAppState } from './src/hooks/useAppState';
-import BoardListScreen from './src/components/BoardListScreen';
-import BoardDetailScreen from './src/components/BoardDetailScreen';
+import BoardListScreen from './src/components/BoardListScreen/BoardListScreen';
+import BoardDetailScreen from './src/components/BoardDetailScreen/BoardDetailScreen';
 
 export default function App() {
     const {
@@ -28,6 +28,7 @@ export default function App() {
         deleteTask,
         moveTaskToList,
         toggleTaskFinished,
+        toggleTaskInProgress,
     } = useAppState(initialData.boards, initialData.lists, initialData.tasks);
 
     return (
@@ -46,6 +47,7 @@ export default function App() {
                     onDeleteList={deleteList}
                     onDeleteTask={deleteTask}
                     onToggleTaskFinished={toggleTaskFinished}
+                    onToggleTaskInProgress={toggleTaskInProgress}
                     onMoveTask={moveTaskToList}
                     onTaskFormChange={updateTaskForm}
                     onAddTask={addTask}
@@ -67,6 +69,6 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f7',
+        backgroundColor: '#0f1116',
     },
 });
