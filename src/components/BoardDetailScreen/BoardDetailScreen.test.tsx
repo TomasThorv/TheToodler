@@ -23,15 +23,16 @@ describe('BoardDetailScreen', () => {
                 tasksByList={{}}
                 listForm={mockListForm}
                 taskForms={{}}
-                onBack={() => {}}
-                onListFormChange={() => {}}
-                onAddList={() => {}}
-                onDeleteList={() => {}}
-                onDeleteTask={() => {}}
-                onToggleTaskFinished={() => {}}
-                onMoveTask={() => {}}
-                onTaskFormChange={() => {}}
-                onAddTask={() => {}}
+                onBack={() => { }}
+                onListFormChange={() => { }}
+                onAddList={() => { }}
+                onDeleteList={() => { }}
+                onDeleteTask={() => { }}
+                onToggleTaskFinished={() => { }}
+                onToggleTaskInProgress={() => { }}
+                onMoveTask={() => { }}
+                onTaskFormChange={() => { }}
+                onAddTask={() => { }}
             />
         );
         expect(getByText('Test Board')).toBeTruthy();

@@ -16,9 +16,10 @@ describe('TaskCard', () => {
             <TaskCard
                 task={mockTask}
                 availableLists={[]}
-                onDelete={() => {}}
-                onToggleFinished={() => {}}
-                onMoveToList={() => {}}
+                onDelete={() => { }}
+                onToggleFinished={() => { }}
+                onToggleInProgress={() => { }}
+                onMoveToList={() => { }}
             />
         );
         expect(getByText('Test Task')).toBeTruthy();

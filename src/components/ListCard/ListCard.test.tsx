@@ -25,6 +25,7 @@ describe('ListCard', () => {
                 onDeleteList={() => {}}
                 onDeleteTask={() => {}}
                 onToggleTaskFinished={() => {}}
+                onToggleTaskInProgress={() => {}}
                 onMoveTask={() => {}}
                 onTaskFormChange={() => {}}
                 onAddTask={() => {}}
