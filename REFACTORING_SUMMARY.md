@@ -85,5 +85,3 @@ Created `README.md` with:
 6. **Type Safety**: TypeScript interfaces prevent runtime errors
 
 ## Main App.tsx
-
-Reduced from 500+ lines to ~60 lines - now just orchestrates components!
