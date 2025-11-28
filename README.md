@@ -61,6 +61,7 @@ Each component has a single, well-defined responsibility:
 ### Type Safety
 
 All types are defined in `src/types/index.ts`:
+
 - Board, BoardList, TaskItem (data models)
 - NewBoardForm, NewListForm, NewTaskForm (form models)
 
