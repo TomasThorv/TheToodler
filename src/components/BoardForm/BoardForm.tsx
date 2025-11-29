@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { NewBoardForm } from '../../types';
 import AppleButton from '../AppleButton';
 
@@ -10,28 +10,38 @@ interface BoardFormProps {
 }
 
 const BoardForm: React.FC<BoardFormProps> = ({ form, onFormChange, onSubmit }) => {
+    const [open, setOpen] = useState(false);
+
     return (
         <View style={styles.formContainer}>
-            <Text style={styles.sectionTitle}>Create a new board</Text>
-            <TextInput
-                placeholder="Board name"
-                value={form.name}
-                onChangeText={(text) => onFormChange({ ...form, name: text })}
-                style={styles.input}
-            />
-            <TextInput
-                placeholder="Description"
-                value={form.description}
-                onChangeText={(text) => onFormChange({ ...form, description: text })}
-                style={styles.input}
-            />
-            <TextInput
-                placeholder="Thumbnail URL"
-                value={form.thumbnailPhoto}
-                onChangeText={(text) => onFormChange({ ...form, thumbnailPhoto: text })}
-                style={styles.input}
-            />
-            <AppleButton title="Add Board" onPress={onSubmit} variant="primary" />
+            <TouchableOpacity style={styles.formHeader} onPress={() => setOpen((s) => !s)}>
+                <Text style={styles.chevron}>{open ? '▾' : '▸'}</Text>
+                <Text style={styles.sectionTitle}>Create a new board</Text>
+            </TouchableOpacity>
+
+            {open && (
+                <>
+                    <TextInput
+                        placeholder="Board name"
+                        value={form.name}
+                        onChangeText={(text) => onFormChange({ ...form, name: text })}
+                        style={styles.input}
+                    />
+                    <TextInput
+                        placeholder="Description"
+                        value={form.description}
+                        onChangeText={(text) => onFormChange({ ...form, description: text })}
+                        style={styles.input}
+                    />
+                    <TextInput
+                        placeholder="Thumbnail URL"
+                        value={form.thumbnailPhoto}
+                        onChangeText={(text) => onFormChange({ ...form, thumbnailPhoto: text })}
+                        style={styles.input}
+                    />
+                    <AppleButton title="Add Board" onPress={onSubmit} variant="primary" />
+                </>
+            )}
         </View>
     );
 };
@@ -53,11 +63,20 @@ const styles = StyleSheet.create({
     sectionTitle: {
         fontSize: 16,
         fontWeight: '700',
-        marginBottom: 12,
         color: '#ff6b35',
         letterSpacing: 1,
         fontFamily: 'monospace',
         textTransform: 'uppercase',
+    },
+    formHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 8,
+    },
+    chevron: {
+        fontSize: 18,
+        marginRight: 8,
+        color: '#ff6b35',
     },
     input: {
         borderWidth: 1,
