@@ -156,13 +156,13 @@ npx eslint . --ext .ts,.tsx --fix
 
 ## Folder Structure Compliance
 
-✅ **Each component has its own folder** containing:
+- **Each component has its own folder** containing:
 
 - Component file (`ComponentName.tsx`)
 - Test file (`ComponentName.test.tsx`)
 - Index file for clean imports (`index.ts`)
 
-✅ **Proper separation of concerns**:
+- **Proper separation of concerns**:
 
 - `src/components/` - All UI components
 - `src/hooks/` - Custom React hooks
@@ -170,7 +170,7 @@ npx eslint . --ext .ts,.tsx --fix
 - `src/types/` - TypeScript type definitions
 - `src/styles/` - Shared styles (if needed)
 
-✅ **Code consistency enforced by ESLint**:
+- **Code consistency enforced by ESLint**:
 
 - 4 spaces indentation
 - Egyptian style curly braces (1tbs)

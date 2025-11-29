@@ -1,14 +1,14 @@
 # Bonus Features Implementation Summary
 
-## ✅ Core Requirement (10%)
+## Core Requirement (10%)
 
 **Task Moving Between Lists**
 
-- **Status**: Already implemented ✓
+- **Status**: Already implemented
 - **Implementation**: In `TaskCard.tsx`, users can scroll horizontally through available list buttons to move tasks
 - **Code Location**: `src/components/TaskCard/TaskCard.tsx` (lines ~40-60)
 
-## 🌟 Bonus Features (20% Extra Credit)
+## Bonus Features (20% Extra Credit)
 
 ### 1. Task Priority System
 
@@ -32,7 +32,7 @@
 
 - **Date Input**: Text input field (YYYY-MM-DD format) in task creation form
 - **Overdue Detection**: Automatic detection of tasks past their due date
-- **Visual Warnings**: Red text and "⚠️ Overdue" label for tasks past due date
+- **Visual Warnings**: Red text and "Overdue" label for tasks past due date
 - **Files Modified**:
   - `src/types/index.ts` - Added `dueDate` field (optional string)
   - `src/components/TaskForm/TaskForm.tsx` - Added due date input field
