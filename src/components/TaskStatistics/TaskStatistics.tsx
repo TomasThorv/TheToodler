@@ -36,7 +36,7 @@ const TaskStatistics: React.FC<TaskStatisticsProps> = ({ tasks }) => {
                 </View>
                 <View style={[styles.statCard, styles.infoCard]}>
                     <Text style={styles.statNumber}>{completionRate}%</Text>
-                    <Text style={styles.statLabel}>Completion</Text>
+                    <Text style={styles.statLabel}>Completed</Text>
                 </View>
             </View>
             {highPriorityTasks > 0 && (
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#1a1d2e',
         borderRadius: 8,
-        padding: 20,
+        padding: 10,
         marginBottom: 20,
         borderWidth: 1,
         borderColor: '#2d3142',
@@ -85,13 +85,13 @@ const styles = StyleSheet.create({
     statsGrid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 12,
-        marginBottom: 12,
+        gap: 6,
+        marginBottom: 8,
     },
     statCard: {
         flex: 1,
         minWidth: 70,
-        padding: 16,
+        padding: 6,
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',

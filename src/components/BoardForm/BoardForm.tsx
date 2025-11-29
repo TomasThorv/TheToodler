@@ -11,6 +11,18 @@ interface BoardFormProps {
 
 const BoardForm: React.FC<BoardFormProps> = ({ form, onFormChange, onSubmit }) => {
     const [open, setOpen] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const handleSubmit = () => {
+        // `name` is required for creating a board
+        if (!form.name || form.name.trim() === '') {
+            setError('Board name is required');
+            return;
+        }
+
+        setError(null);
+        onSubmit();
+    };
 
     return (
         <View style={styles.formContainer}>
@@ -24,9 +36,14 @@ const BoardForm: React.FC<BoardFormProps> = ({ form, onFormChange, onSubmit }) =
                     <TextInput
                         placeholder="Board name"
                         value={form.name}
-                        onChangeText={(text) => onFormChange({ ...form, name: text })}
-                        style={styles.input}
+                        onChangeText={(text) => {
+                            onFormChange({ ...form, name: text });
+                            if (error) setError(null);
+                        }}
+                        style={[styles.input, error ? styles.inputError : undefined]}
                     />
+                    {error && <Text style={styles.errorText}>{error}</Text>}
+
                     <TextInput
                         placeholder="Description"
                         value={form.description}
@@ -34,12 +51,12 @@ const BoardForm: React.FC<BoardFormProps> = ({ form, onFormChange, onSubmit }) =
                         style={styles.input}
                     />
                     <TextInput
-                        placeholder="Thumbnail URL"
+                        placeholder="Thumbnail photo URL"
                         value={form.thumbnailPhoto}
                         onChangeText={(text) => onFormChange({ ...form, thumbnailPhoto: text })}
                         style={styles.input}
                     />
-                    <AppleButton title="Add Board" onPress={onSubmit} variant="primary" />
+                    <AppleButton title="Add Board" onPress={handleSubmit} variant="primary" />
                 </>
             )}
         </View>
@@ -88,6 +105,16 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         color: '#ffffff',
         fontFamily: 'monospace',
+    },
+    inputError: {
+        borderColor: '#ff3d00',
+    },
+    errorText: {
+        color: '#ff3d00',
+        fontSize: 12,
+        marginBottom: 10,
+        fontFamily: 'monospace',
+        fontWeight: '700',
     },
 });
 

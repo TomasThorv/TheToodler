@@ -12,9 +12,9 @@ export const useAppState = (initialBoards: Board[], initialLists: BoardList[], i
         description: '',
         thumbnailPhoto: '',
     });
-    const [listForm, setListForm] = useState<NewListForm>({ 
-        name: '', 
-        color: '#cccccc' 
+    const [listForm, setListForm] = useState<NewListForm>({
+        name: '',
+        color: '#cccccc'
     });
     const [taskForm, setTaskForm] = useState<Record<number, NewTaskForm>>({});
 
@@ -40,14 +40,15 @@ export const useAppState = (initialBoards: Board[], initialLists: BoardList[], i
     }, [listsForBoard, tasks]);
 
     const addBoard = () => {
-        if (!boardForm.name.trim() || !boardForm.thumbnailPhoto.trim()) {
+        // Require only the board name. Thumbnail is optional.
+        if (!boardForm.name.trim()) {
             return;
         }
         const newBoard: Board = {
             id: generateId(boards),
             name: boardForm.name.trim(),
             description: boardForm.description.trim(),
-            thumbnailPhoto: boardForm.thumbnailPhoto.trim(),
+            thumbnailPhoto: boardForm.thumbnailPhoto.trim() || '',
         };
         setBoards((prev) => [...prev, newBoard]);
         setBoardForm({ name: '', description: '', thumbnailPhoto: '' });

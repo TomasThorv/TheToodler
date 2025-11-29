@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import initialData from './data.json';
+import { TaskItem } from './src/types';
 import { useAppState } from './src/hooks/useAppState';
 import BoardListScreen from './src/components/BoardListScreen/BoardListScreen';
 import BoardDetailScreen from './src/components/BoardDetailScreen/BoardDetailScreen';
@@ -29,7 +30,12 @@ export default function App() {
         moveTaskToList,
         toggleTaskFinished,
         toggleTaskInProgress,
-    } = useAppState(initialData.boards, initialData.lists, initialData.tasks);
+    } = useAppState(
+        initialData.boards,
+        initialData.lists,
+        // JSON import types "priority" as string; narrow to TaskItem[] for TS
+        initialData.tasks as unknown as TaskItem[]
+    );
 
     return (
         <SafeAreaView style={styles.container}>

@@ -8,25 +8,25 @@ interface AppleButtonProps {
     color?: string;
 }
 
-const AppleButton: React.FC<AppleButtonProps> = ({ 
-    title, 
-    onPress, 
-    variant = 'primary', 
-    color 
+const AppleButton: React.FC<AppleButtonProps> = ({
+    title,
+    onPress,
+    variant = 'primary',
+    color
 }) => {
-    const buttonStyle = variant === 'primary' 
-        ? styles.primary 
-        : variant === 'danger' 
-        ? styles.danger 
-        : styles.secondary;
-  
-    const textStyle = variant === 'secondary' 
-        ? styles.secondaryText 
+    const buttonStyle = variant === 'primary'
+        ? styles.primary
+        : variant === 'danger'
+            ? styles.danger
+            : styles.secondary;
+
+    const textStyle = variant === 'secondary'
+        ? styles.secondaryText
         : styles.primaryText;
 
     return (
-        <TouchableOpacity 
-            style={[styles.button, buttonStyle, color && { backgroundColor: color }]} 
+        <TouchableOpacity
+            style={[styles.button, buttonStyle, color && { backgroundColor: color }]}
             onPress={onPress}
             activeOpacity={0.7}
         >
@@ -37,6 +37,7 @@ const AppleButton: React.FC<AppleButtonProps> = ({
 
 const styles = StyleSheet.create({
     button: {
+        marginRight: 8,
         paddingVertical: 14,
         paddingHorizontal: 24,
         borderRadius: 8,
