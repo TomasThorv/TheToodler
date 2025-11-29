@@ -110,13 +110,16 @@ The project follows consistent coding standards enforced by ESLint:
 # Install dependencies
 npm install
 
-# Run on web
+# Start the development server
+npm start
+
+# Optional: run on web
 npm run web
 
-# Run on Android
+# Optional: run on Android (via Expo)
 npm run android
 
-# Run on iOS
+# Optional: run on iOS (via Expo)
 npm run ios
 ```
 
@@ -132,6 +135,14 @@ npm test -- --watch
 # Run tests with coverage
 npm test -- --coverage
 ```
+
+## Testing on Mobile
+
+- Start the dev server with `npm start` which runs the Expo dev tools.
+- Open the Expo Go app on your iOS/Android device and scan the QR code shown in the terminal/Expo dev tools to load the app on your phone.
+- Alternatively you can run `expo start` directly if you prefer using the Expo CLI.
+
+If you don't have the Expo Go app installed, get it from the App Store or Google Play Store.
 
 ## Lint & Format
 
