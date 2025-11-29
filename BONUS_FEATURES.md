@@ -42,6 +42,7 @@
 ### 3. Task Statistics Dashboard
 
 **Implementation Details:**
+
 - **Metrics Displayed**:
   - Total tasks count
   - Completed tasks count
@@ -57,6 +58,7 @@
 - **Files Created**:
   - `src/components/TaskStatistics/TaskStatistics.tsx`
   - `src/components/TaskStatistics/index.ts`
+
 ### 4. Search/Filter Foundation
 
 **Implementation Details:**
