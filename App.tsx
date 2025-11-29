@@ -33,7 +33,6 @@ export default function App() {
     } = useAppState(
         initialData.boards,
         initialData.lists,
-        // JSON import types "priority" as string; narrow to TaskItem[] for TS
         initialData.tasks as unknown as TaskItem[]
     );
 
