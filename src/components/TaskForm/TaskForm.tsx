@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { NewTaskForm } from '../../types';
 import AppleButton from '../AppleButton';
@@ -11,6 +11,8 @@ interface TaskFormProps {
 
 const TaskForm: React.FC<TaskFormProps> = ({ form, onFormChange, onSubmit }) => {
     const priorities: Array<'low' | 'medium' | 'high'> = ['low', 'medium', 'high'];
+    const [dateError, setDateError] = useState<string | null>(null);
+    const [nameError, setNameError] = useState<string | null>(null);
 
     return (
         <View style={styles.formContainer}>
@@ -18,9 +20,15 @@ const TaskForm: React.FC<TaskFormProps> = ({ form, onFormChange, onSubmit }) => 
             <TextInput
                 placeholder="Task name"
                 value={form.name}
-                onChangeText={(text) => onFormChange({ ...form, name: text })}
-                style={styles.input}
+                onChangeText={(text) => {
+                    onFormChange({ ...form, name: text });
+                    if (text && text.trim() !== '') {
+                        setNameError(null);
+                    }
+                }}
+                style={[styles.input, nameError && styles.inputError]}
             />
+            {nameError ? <Text style={styles.errorText}>{nameError}</Text> : null}
             <TextInput
                 placeholder="Task description"
                 value={form.description}
@@ -30,9 +38,26 @@ const TaskForm: React.FC<TaskFormProps> = ({ form, onFormChange, onSubmit }) => 
             <TextInput
                 placeholder="Due date (YYYY-MM-DD)"
                 value={form.dueDate || ''}
-                onChangeText={(text) => onFormChange({ ...form, dueDate: text })}
-                style={styles.input}
+                onChangeText={(text) => {
+                    onFormChange({ ...form, dueDate: text });
+                    if (!text) {
+                        setDateError(null);
+                        return;
+                    }
+                    if (!isValidDate(text)) {
+                        setDateError('Invalid date — use YYYY-MM-DD');
+                    } else {
+                        setDateError(null);
+                    }
+                }}
+                style={[styles.input, dateError && styles.inputError]}
+                onBlur={() => {
+                    if (form.dueDate && !isValidDate(form.dueDate)) {
+                        setDateError('Invalid date — use YYYY-MM-DD');
+                    }
+                }}
             />
+            {dateError ? <Text style={styles.errorText}>{dateError}</Text> : null}
             <View style={styles.priorityContainer}>
                 <Text style={styles.priorityLabel}>Priority:</Text>
                 <View style={styles.priorityButtons}>
@@ -57,10 +82,40 @@ const TaskForm: React.FC<TaskFormProps> = ({ form, onFormChange, onSubmit }) => 
                     ))}
                 </View>
             </View>
-            <AppleButton title="Add Task" onPress={onSubmit} variant="primary" />
+            <AppleButton
+                title="Add Task"
+                onPress={() => {
+                    if (!form.name || form.name.trim() === '') {
+                        setNameError('Please enter a task name');
+                        return;
+                    }
+                    if (form.dueDate && !isValidDate(form.dueDate)) {
+                        setDateError('Invalid date — use YYYY-MM-DD');
+                        return;
+                    }
+                    setNameError(null);
+                    setDateError(null);
+                    onSubmit();
+                }}
+                variant="primary"
+            />
         </View>
     );
 };
+
+function isValidDate(dateStr: string): boolean {
+    if (!dateStr) return true;
+    const re = /^\d{4}-\d{2}-\d{2}$/;
+    if (!re.test(dateStr)) return false;
+    const [yStr, mStr, dStr] = dateStr.split('-');
+    const y = Number(yStr);
+    const m = Number(mStr);
+    const d = Number(dStr);
+    if (Number.isNaN(y) || Number.isNaN(m) || Number.isNaN(d)) return false;
+    if (m < 1 || m > 12) return false;
+    const dt = new Date(y, m - 1, d);
+    return dt.getFullYear() === y && dt.getMonth() === m - 1 && dt.getDate() === d;
+}
 
 const styles = StyleSheet.create({
     formContainer: {
@@ -143,6 +198,16 @@ const styles = StyleSheet.create({
     },
     priorityButtonTextActive: {
         color: '#ffffff',
+    },
+    inputError: {
+        borderColor: '#ff3d00',
+        backgroundColor: '#1b0f0f',
+    },
+    errorText: {
+        color: '#ff3d00',
+        fontSize: 12,
+        marginBottom: 8,
+        fontFamily: 'monospace',
     },
 });
 

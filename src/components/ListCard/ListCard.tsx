@@ -55,17 +55,21 @@ const ListCard: React.FC<ListCardProps> = ({
             {expanded && (
                 <>
                     <View style={styles.tasksContainer}>
-                        {tasks.map((task) => (
-                            <TaskCard
-                                key={task.id}
-                                task={task}
-                                availableLists={availableLists}
-                                onDelete={onDeleteTask}
-                                onToggleFinished={onToggleTaskFinished}
-                                onToggleInProgress={onToggleTaskInProgress}
-                                onMoveToList={onMoveTask}
-                            />
-                        ))}
+                        {tasks.length === 0 ? (
+                            <Text style={styles.emptyText}>No tasks in this list</Text>
+                        ) : (
+                            tasks.map((task) => (
+                                <TaskCard
+                                    key={task.id}
+                                    task={task}
+                                    availableLists={availableLists}
+                                    onDelete={onDeleteTask}
+                                    onToggleFinished={onToggleTaskFinished}
+                                    onToggleInProgress={onToggleTaskInProgress}
+                                    onMoveToList={onMoveTask}
+                                />
+                            ))
+                        )}
                     </View>
                     <TouchableOpacity
                         style={styles.addToggle}
@@ -168,6 +172,12 @@ const styles = StyleSheet.create({
         padding: 16,
         gap: 12,
         backgroundColor: '#1a1d2e',
+    },
+    emptyText: {
+        color: '#9e9e9e',
+        fontSize: 14,
+        fontFamily: 'monospace',
+        paddingVertical: 8,
     },
 });
 
